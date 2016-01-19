@@ -9,6 +9,10 @@ def boxfilter(n):
     total=sum(map(sum, b))
     b[:] = [x / total for x in b]
     print b
-    return 
+    return b
+
+boxfilter(3)
+boxfilter(4)
+boxfilter(5)
 
 
