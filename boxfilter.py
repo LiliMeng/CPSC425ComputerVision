@@ -5,7 +5,9 @@ from scipy import signal
 
 def boxfilter(n):
     assert n%2!=0, "The Dimensions must be odd"
-    b=np.full((n,n),0.4)
+    b=np.full((n,n),0.04)
+    total=sum(map(sum, b))
+    b[:] = [x / total for x in b]
     print b
     return 
 
