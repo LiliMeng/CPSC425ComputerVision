@@ -30,3 +30,5 @@ def gauss2d(sigma):
 
 print gauss2d(0.5)
 print gauss2d(1)
+
+#Convolution is correlation with  the filter rotated 180 degrees. This makes no difference if the filter is symmetric, like a Gaussian, or a Laplacian. But it makes a whole lot of difference when the filter is not symmetric, like a derivative.
