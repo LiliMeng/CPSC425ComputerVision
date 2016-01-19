@@ -9,7 +9,6 @@ def gauss1d(sigma):
     	length=tmp
     else:
     	length=tmp+1
-    #print "the new sgima value is %f:" %newSigma
     x=range(-(int)(length/2),(int)(length/2+1))
     PI=3.1415926
     
