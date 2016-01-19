@@ -24,10 +24,9 @@ def gauss1d(sigma):
 
 def guass2d(sigma):
     guas1d=gauss1d(sigma)
-    guas1d = guas1d[np.newaxis]
+    guas1d = guas1d[np.newaxis]  #To convert a 1D array, f, to a 2D array f, of the same size you use ‘f = f[np.newaxis]’
     guas1dTrans=np.transpose(guas1d)
-    #guas1dTrans=guas1dTrans[np.newaxis]
-    finalResult=signal.convolve2d(guas1d,guas1dTrans)
+    finalResult=signal.convolve2d(guas1d,guas1dTrans) # a 2D Gaussian can be formed by convolution of a 1D Gaussian with its transpose.
     return finalResult
 
 print guass2d(0.5)
