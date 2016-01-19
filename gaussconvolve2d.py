@@ -53,3 +53,5 @@ filtered_image1.save('filtered_image.png','PNG')
 cv2.imshow('filtered_image',filtered_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+#. Convolution is correlation with  the filter rotated 180 degrees. This makes no difference if the filter is symmetric, like a Gaussian, or a Laplacian. But it makes a whole lot of difference when the filter is not symmetric, like a derivative.
