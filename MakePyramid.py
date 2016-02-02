@@ -6,20 +6,9 @@ import ncc
 
 
 def MakePyramid(image,minsize):
+    pyramid = []
     im=Image.open(image)
-    s=im.size
-    x=s[0]
-    y=s[1]
-    print x
-    print y
-    image_size=x*y
-    while(x>minsize[0] and y>minsize[1]):
-    	x=x*0.75
-    	y=y*0.75
-    	im1=im.resize((int(x),int(y)), Image.BICUBIC)
-        im1.show()
-    print im1.size
-    return im1
-
-minsize=[64,64]
-pyramid=MakePyramid('lena.jpg',minsize)
+    while(im.size[0]>minsize[0] and im.size[1]>minsize[1]):
+        pyramid.append(im)
+    	im=im.resize((int(im.size[0]*0.75),int(im.size[1]*0.75)), Image.BICUBIC)
+    return pyramid
