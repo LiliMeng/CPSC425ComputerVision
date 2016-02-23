@@ -3,7 +3,7 @@ import numpy as np
 import random
 import os.path
 import pickle
-
+import time
 ##############################################################################
 #                        Functions for you to complete                       #
 ##############################################################################
@@ -44,17 +44,15 @@ def CopyPatch(imHole,TODOMask, textureIm, iPatchCenter, jPatchCenter, iMatchCent
 						#
 						# ADD YOUR CODE HERE
 						#
-						for m in range(mask_rows):
-							for n in range(mask_cols):
-								if(TODOMask[m][n]==1):
-									# the x, y pixel postion in imHole image coordinate
-									i_hole=i+iPatchCenter-patchSize/2
-									j_hole=j+jPatchCenter-patchSize/2
-									# the x, y pixel position in texture image coordinate
-									i_texture=i+iMatchCenter-patchSize/2
-									j_texture=j+jMatchCenter-patchSize/2
-									# copy the RGB channels from the texture image to the imHole image
-									for d in range(patch_bands):
+						# the x, y pixel postion in imHole image coordinate
+						i_hole=iPatchCenter+(i-patchSize/2)
+						j_hole=jPatchCenter+(j-patchSize/2)
+						# the x, y pixel position in texture image coordinate
+						i_texture=iMatchCenter+(i-patchSize/2)
+						j_texture=jMatchCenter+(j-patchSize/2)
+						# copy the RGB channels from the texture image to the imHole image
+						if(TODOMask[i][j]==1):
+								for d in range(patch_bands):
 										imHole[i_hole][j_hole][d] = textureIm[i_texture][j_texture][d]
 	return imHole
 
@@ -91,7 +89,8 @@ def Find_Edge(hole_mask):
 #
 # Constants
 #
-
+start_time = time.time()
+print start_time
 # Change patchL to change the patch size used (patch size is 2 *patchL + 1)
 patchL = 10
 patchSize = 2*patchL+1
@@ -237,3 +236,10 @@ while (nFill > 0):
 if showResults == True:
 	Image.fromarray(imHole).convert('RGB').show()
 Image.fromarray(imHole).convert('RGB').save('results.jpg')
+
+time2=time.time()
+print time2
+executionTime=time2-start_time 
+print("--- %s seconds ---" % (time.time() - start_time))
+
+print executionTime
