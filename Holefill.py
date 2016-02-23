@@ -4,7 +4,6 @@ import random
 import os.path
 import pickle
 
-
 ##############################################################################
 #                        Functions for you to complete                       #
 ##############################################################################
@@ -25,7 +24,7 @@ def ComputeSSD(TODOPatch, TODOMask, textureIm, patchL):
 				for j in range(patch_cols):
 					if(TODOMask[i][j]==0):
 						for d in range(patch_bands):
-							diff=(TODOPatch[i][j][d]*1.0-textureIm[r][c][d]*1.0)
+							diff=(TODOPatch[i][j][d]*1.0-textureIm[r+i][c+j][d]*1.0)
 							SSD[r][c]+=diff*diff
                         
                 
@@ -204,14 +203,13 @@ while (nFill > 0):
 		# Compute masked SSD of TODOPatch and textureIm
 		#
 		ssdIm = ComputeSSD(TODOPatch, TODOMask, textureIm, patchL)
-    
+
 		# Randomized selection of one of the best texture patches
 		ssdIm1 = np.sort(np.copy(ssdIm),axis=None)
 		ssdValue = ssdIm1[min(round(abs(random.gauss(0,randomPatchSD))),np.size(ssdIm1)-1)]
 		ssdIndex = np.nonzero(ssdIm==ssdValue)
 		iSelectCenter = ssdIndex[0][0]
 		jSelectCenter = ssdIndex[1][0]
-		
 
 		# adjust i, j coordinates relative to textureIm
 		iSelectCenter = iSelectCenter + patchL
